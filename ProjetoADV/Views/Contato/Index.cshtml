@@ -1,0 +1,41 @@
+﻿@model List<UsuarioModel>
+
+@{
+    ViewData["Title"] = "Controle de Contato";
+}
+
+<a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Criar">Cadastrar contato</a>
+
+<div class="text-center">
+    <h1 class="display-4">Contatos</h1>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Idade</th>
+            <th scope="col">Profissão</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <th scope="row">@usuario.Id</th>
+                <td>@usuario.Nome</td>
+                <td>@usuario.Idade</td>
+                <td>@usuario.Cargo</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Editar">Editar</a>
+                        <a href="@Url.Action("ConfirmDeletar", new { id = usuario.Id })" class="btn btn-danger">Deletar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
